@@ -58,3 +58,15 @@ Overall permissibility:
 
 
 """"
+
+
+from typing import Dict, List, Tuple
+
+
+def is_rule1_violated(action: Dict[str, bool]) -> bool:
+    """
+    Rule 1 - Non-Maleficence:
+    V1 := causes_severe_harm
+    """
+    return action["causes_severe_harm"]
+
