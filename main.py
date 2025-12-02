@@ -59,10 +59,7 @@ Overall permissibility:
 
 """
 
-
 from typing import Dict, List, Tuple
-
-
 
 
 def is_rule1_violated(action: Dict[str, bool]) -> bool:
@@ -72,6 +69,7 @@ def is_rule1_violated(action: Dict[str, bool]) -> bool:
     """
     return action["causes_severe_harm"]
 
+
 def is_rule2_violated(action: Dict[str, bool]) -> bool:
     """
     Rule 2 - Harm-Mitigation:
@@ -79,12 +77,14 @@ def is_rule2_violated(action: Dict[str, bool]) -> bool:
     """
     return action["causes_minor_harm"] and not action["prevents_catastrophe"]
 
+
 def is_rule3_violated(action: Dict[str, bool]) -> bool:
     """
     Rule 3 - Data-Stewardship:
     V3 := violates_privacy ∧ ¬has_consent
     """
     return action["violates_privacy"] and not action["has_consent"]
+
 
 def is_rule4_violated(action: Dict[str, bool]) -> bool:
     """
@@ -95,12 +95,14 @@ def is_rule4_violated(action: Dict[str, bool]) -> bool:
         action["prevents_minor_harm"] and action["has_ethics_approval"]
     )
 
+
 def is_rule5_violated(action: Dict[str, bool]) -> bool:
     """
     Rule 5 - Accountability:
     V5 := ¬has_explanation
     """
     return not action["has_explanation"]
+
 
 def is_rule6_violated(action: Dict[str, bool]) -> bool:
     """
@@ -132,11 +134,9 @@ def is_action_permissible(action: Dict[str, bool]) -> Tuple[bool, List[str]]:
         violated_rules.append("Rule 5: Accountability (No Explanation / Traceability)")
     if is_rule6_violated(action):
         violated_rules.append("Rule 6: Bias Governance (Unmitigated Historical Bias)")
-    
 
     is_permissible = (len(violated_rules) == 0)
     return is_permissible, violated_rules
-
 
 
 """
@@ -188,145 +188,142 @@ Domain: Predictive Policing AI
 """
 
 
-
 # =======================
 # Scenarios
 # =======================
 
-
-
 # 1- Scenario A (Obviousley Premissible):
 
-    scenario_A_description = """
-    Scenario A: Location-based Patrol Optimization with Oversight
+scenario_A_description = """
+Scenario A: Location-based Patrol Optimization with Oversight
 
-    A city deploys a predictive policing AI that only suggests patrol zones (not specific people)
-    based on recent anonymous incident reports and environmental factors (lighting, time of day).
-    Police presence increases slightly in some areas, which may cause minor inconvenience,
-    but the main goal is to prevent serious violent incidents.
+A city deploys a predictive policing AI that only suggests patrol zones (not specific people)
+based on recent anonymous incident reports and environmental factors (lighting, time of day).
+Police presence increases slightly in some areas, which may cause minor inconvenience,
+but the main goal is to prevent serious violent incidents.
 
-    The system:
-    - does NOT directly cause severe harm,
-    - may cause minor harm (increased presence) but is justified to prevent catastrophe,
-    - does NOT use invasive personal data (no privacy violation),
-    - is NOT deceptive (citizens are informed about the system),
-    - has ethics approval and clear documentation,
-    - does NOT rely on biased historical arrest data,
-    - and still has bias monitoring in place as a safeguard.
-    """
-    
-    scenario_A_action = {
-        "causes_severe_harm": False,
-        "causes_minor_harm": True,         
-        "prevents_catastrophe": True,      
-        "violates_privacy": False,          
-        "has_consent": True,                
-        "deceives_human": False,          
-        "has_ethics_approval": True,
-        "has_explanation": True,
-        "prevents_minor_harm": True,
-        "uses_historical_data": False,     
-        "has_bias_mitigation": True,        
+The system:
+- does NOT directly cause severe harm,
+- may cause minor harm (increased presence) but is justified to prevent catastrophe,
+- does NOT use invasive personal data (no privacy violation),
+- is NOT deceptive (citizens are informed about the system),
+- has ethics approval and clear documentation,
+- does NOT rely on biased historical arrest data,
+- and still has bias monitoring in place as a safeguard.
+"""
+
+scenario_A_action = {
+    "causes_severe_harm": False,
+    "causes_minor_harm": True,
+    "prevents_catastrophe": True,
+    "violates_privacy": False,
+    "has_consent": True,
+    "deceives_human": False,
+    "has_ethics_approval": True,
+    "has_explanation": True,
+    "prevents_minor_harm": True,
+    "uses_historical_data": False,
+    "has_bias_mitigation": True,
 }
 
-    scenario_A_predicted_outcome = {
+scenario_A_predicted_outcome = {
     "expected_permissible": True,
     "expected_violations": [],
 }
 
 
 # 2- Scenario B (Obviousley Impremissible):
-    
-    scenario_B_description = """
-    Scenario B: Individual Risk Scoring with Secret Blacklist
 
-    A police department deploys an AI system that assigns "risk scores" to individual citizens
-    using mainly historical arrest and stop-and-frisk data from heavily policed neighborhoods.
-    Officers are instructed to stop and search people with high scores.
+scenario_B_description = """
+Scenario B: Individual Risk Scoring with Secret Blacklist
 
-    The system:
-    - has led to repeated wrongful stops and occasional violent escalations,
-    - does NOT clearly prevent a specific catastrophe, it mainly supports aggressive policing,
-    - collects detailed location history and social media data without explicit consent,
-    - is not honestly described (officers and public are told it is just a 'scheduling tool'),
-    - has no independent ethics approval, no documentation, and no real explanation of scores,
-    - strongly relies on biased historical data,
-    - and there is no bias mitigation in place.
+A police department deploys an AI system that assigns "risk scores" to individual citizens
+using mainly historical arrest and stop-and-frisk data from heavily policed neighborhoods.
+Officers are instructed to stop and search people with high scores.
 
-    This scenario is clearly impermissible under the EGF.
-    """
+The system:
+- has led to repeated wrongful stops and occasional violent escalations,
+- does NOT clearly prevent a specific catastrophe, it mainly supports aggressive policing,
+- collects detailed location history and social media data without explicit consent,
+- is not honestly described (officers and public are told it is just a 'scheduling tool'),
+- has no independent ethics approval, no documentation, and no real explanation of scores,
+- strongly relies on biased historical data,
+- and there is no bias mitigation in place.
 
-    scenario_B_action = {
-        "causes_severe_harm": True,         
-        "causes_minor_harm": True,          
-        "prevents_catastrophe": False,     
-        "violates_privacy": True,           
-        "has_consent": False,               
-        "deceives_human": True,           
-        "has_ethics_approval": False,
-        "has_explanation": False,
-        "prevents_minor_harm": False,       
-        "uses_historical_data": True,       
-        "has_bias_mitigation": False,       
-    }
+This scenario is clearly impermissible under the EGF.
+"""
 
-    scenario_B_predicted_outcome = {
-        "expected_permissible": False,
-        "expected_violations": [
-            "Rule 1: Non-Maleficence (Severe Harm)",
-            "Rule 2: Harm-Mitigation (Unjustified Minor Harm)",
-            "Rule 3: Data-Stewardship (Privacy without Consent)",
-            "Rule 4: Honesty (Unjustified Deception)",
-            "Rule 5: Accountability (No Explanation / Traceability)",
-            "Rule 6: Bias Governance (Unmitigated Historical Bias)",
-        ],
-    }
+scenario_B_action = {
+    "causes_severe_harm": True,
+    "causes_minor_harm": True,
+    "prevents_catastrophe": False,
+    "violates_privacy": True,
+    "has_consent": False,
+    "deceives_human": True,
+    "has_ethics_approval": False,
+    "has_explanation": False,
+    "prevents_minor_harm": False,
+    "uses_historical_data": True,
+    "has_bias_mitigation": False,
+}
+
+scenario_B_predicted_outcome = {
+    "expected_permissible": False,
+    "expected_violations": [
+        "Rule 1: Non-Maleficence (Severe Harm)",
+        "Rule 2: Harm-Mitigation (Unjustified Minor Harm)",
+        "Rule 3: Data-Stewardship (Privacy without Consent)",
+        "Rule 4: Honesty (Unjustified Deception)",
+        "Rule 5: Accountability (No Explanation / Traceability)",
+        "Rule 6: Bias Governance (Unmitigated Historical Bias)",
+    ],
+}
 
 
 # 3- Scenario C (Edge Case / Ambiguous):
-    
-    scenario_C_description = """
-    Scenario C: Targeted Undercover Intervention with Strong Safeguards
 
-    An AI system predicts a high risk of gang retaliation at specific locations and times.
-    It uses a combination of current intelligence and carefully debiased historical data.
-    The system recommends deploying undercover officers who appear as ordinary civilians
-    to quietly de-escalate conflicts and interrupt potential violence.
+scenario_C_description = """
+Scenario C: Targeted Undercover Intervention with Strong Safeguards
 
-    The system:
-    - does NOT directly cause severe harm (officers are trained to avoid escalation),
-    - may cause minor harm (some people may feel watched or briefly questioned),
-    - is aimed at preventing a likely shooting (a serious catastrophe),
-    - uses limited personal data with judicial oversight and community-level consent,
-    - involves deception (undercover work), but:
-        * the deception is narrowly scoped,
-        * it has ethics and legal approval,
-        * and it is intended to prevent minor and potentially severe harms,
-    - keeps full internal explanations and logs for later audit,
-    - uses historical data but only with strong bias mitigation and fairness audits.
+An AI system predicts a high risk of gang retaliation at specific locations and times.
+It uses a combination of current intelligence and carefully debiased historical data.
+The system recommends deploying undercover officers who appear as ordinary civilians
+to quietly de-escalate conflicts and interrupt potential violence.
 
-    This scenario is ethically ambiguous in real life, but under the current formal rules,
-    it is classified as permissible because every rule's logical condition is satisfied.
-    """
+The system:
+- does NOT directly cause severe harm (officers are trained to avoid escalation),
+- may cause minor harm (some people may feel watched or briefly questioned),
+- is aimed at preventing a likely shooting (a serious catastrophe),
+- uses limited personal data with judicial oversight and community-level consent,
+- involves deception (undercover work), but:
+    * the deception is narrowly scoped,
+    * it has ethics and legal approval,
+    * and it is intended to prevent minor and potentially severe harms,
+- keeps full internal explanations and logs for later audit,
+- uses historical data but only with strong bias mitigation and fairness audits.
 
-    scenario_C_action = {
-        "causes_severe_harm": False,
-        "causes_minor_harm": True,          
-        "prevents_catastrophe": True,       
-        "violates_privacy": True,           
-        "has_consent": True,                
-        "deceives_human": True,             
-        "has_ethics_approval": True,        
-        "has_explanation": True,            
-        "prevents_minor_harm": True,        
-        "uses_historical_data": True,       
-        "has_bias_mitigation": True,        
-    }
+This scenario is ethically ambiguous in real life, but under the current formal rules,
+it is classified as permissible because every rule's logical condition is satisfied.
+"""
 
-    scenario_C_predicted_outcome = {
-        "expected_permissible": True,
-        "expected_violations": [],  
-    }
+scenario_C_action = {
+    "causes_severe_harm": False,
+    "causes_minor_harm": True,
+    "prevents_catastrophe": True,
+    "violates_privacy": True,
+    "has_consent": True,
+    "deceives_human": True,
+    "has_ethics_approval": True,
+    "has_explanation": True,
+    "prevents_minor_harm": True,
+    "uses_historical_data": True,
+    "has_bias_mitigation": True,
+}
+
+scenario_C_predicted_outcome = {
+    "expected_permissible": True,
+    "expected_violations": [],
+}
 
 
 def print_scenario_result(
@@ -384,3 +381,66 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+"""
+Reflection & Discussion
+
+1) Which ethical principle was hardest to formalize?
+
+   The hardest principle to formalize was Rule 4 (Honesty). In reality, deception is not
+   simply "allowed" or "forbidden". It depends on intent, context, frequency, power
+   dynamics, and long-term trust. In the formal model, I compressed all of that into a
+   single condition:
+
+       V4 := DH ∧ ¬(PM ∧ EA)
+
+   This assumes deception is acceptable whenever it prevents minor harm AND has ethics
+   approval, which is a much stronger and more simplified statement than real ethical
+   reasoning.
+
+2) A real-world scenario that might break this framework:
+
+   A predictive policing system might technically satisfy all the rules:
+     - No obvious severe harm at deployment time,
+     - Some form of "consent" via legal or political channels,
+     - Documented bias mitigation and explainability,
+   but in practice it still creates fear, over-policing, and long-term mistrust in
+   certain neighborhoods. The current rules focus on direct, short-term harms and clear
+   violations, but do not capture long-term social effects, historical oppression, or
+   subtle coercion. So the advisor might label the system as "permissible" even when
+   many people would consider it unethical.
+
+3) Role of human oversight in real deployment:
+
+   This AI Ethics Advisor should be treated as a structured checklist, not a final judge.
+   Human oversight committees (including legal experts, ethicists, technical experts, and
+   community representatives) should:
+     - review the advisor's output,
+     - question the truth of each boolean input (e.g., "do we REALLY have consent?"),
+     - and request more evidence when the stakes are high.
+
+   In highly sensitive cases, a negative result should trigger mandatory human review,
+   and even a "PERMISSIBLE" result should not be accepted blindly without discussion.
+
+4) Trade-offs between a simple framework and a more complex one:
+
+   A simple, rigid framework (like this one) has clear benefits:
+     - easy to explain and audit,
+     - straightforward to implement in code,
+     - useful as a first-line filter for obviously unacceptable actions.
+
+   But it has drawbacks:
+     - it can miss nuance,
+     - it cannot fully represent social context, history, or power,
+     - and it may give a false sense of security ("the logic says it's fine").
+
+   A more complex, nuanced framework might combine formal logic with probabilistic
+   reasoning, case-based analysis, and richer ethical theories. That could better match
+   real-world complexity, but it would be harder to understand, verify, and maintain.
+
+   In practice, a hybrid approach is most realistic: use a relatively simple logical core
+   like this to enforce hard constraints (no severe harm, no privacy violations without
+   consent, no unmitigated historical bias), and then layer human judgment and more
+   nuanced analysis on top, instead of expecting the logic alone to fully solve ethics.
+"""
