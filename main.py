@@ -237,23 +237,29 @@ scenario_A_predicted_outcome = {
 # 2- Scenario B (Obviousley Impremissible):
 
 scenario_B_description = """
-Scenario B: Individual Risk Scoring with Secret Blacklist
+Scenario B: Hidden Risk Scores Based on Biased History
 
-A police department deploys an AI system that assigns "risk scores" to individual citizens
-using mainly historical arrest and stop-and-frisk data from heavily policed neighborhoods.
-Officers are instructed to stop and search people with high scores.
+In this scenario, a police department uses an AI system that gives each person a "risk score".
+The scores are mainly based on old arrest data from neighborhoods that were already heavily
+policed in the past. Officers are told to stop and search people with high scores.
 
-The system:
-- has led to repeated wrongful stops and occasional violent escalations,
-- does NOT clearly prevent a specific catastrophe, it mainly supports aggressive policing,
-- collects detailed location history and social media data without explicit consent,
-- is not honestly described (officers and public are told it is just a 'scheduling tool'),
-- has no independent ethics approval, no documentation, and no real explanation of scores,
-- strongly relies on biased historical data,
-- and there is no bias mitigation in place.
+Key points:
+- Many people with high scores get stopped again and again, and sometimes the situation
+  becomes violent or leads to wrongful detainment.
+- The system does not clearly prevent any specific catastrophe; it mostly supports aggressive
+  "proactive" policing.
+- The AI collects detailed personal data like location history and social media activity
+  without explicit consent.
+- The system is described dishonestly: officers and the public are told it is only a
+  "scheduling tool".
+- There is no independent ethics approval, no clear documentation, and no real explanation
+  of how the scores are produced.
+- It strongly relies on historical data that is already biased.
+- There is no serious bias mitigation.
 
-This scenario is clearly impermissible under the EGF.
+Under my rules, this scenario clearly violates multiple principles and should be IMPERMISSIBLE.
 """
+
 
 scenario_B_action = {
     "causes_severe_harm": True,
