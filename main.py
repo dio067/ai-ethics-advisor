@@ -108,3 +108,31 @@ def is_rule6_violated(action: Dict[str, bool]) -> bool:
     V6 := uses_historical_data ∧ ¬has_bias_mitigation
     """
     return action["uses_historical_data"] and not action["has_bias_mitigation"]
+
+
+def is_action_permissible(action: Dict[str, bool]) -> Tuple[bool, List[str]]:
+    """
+     
+     Main advisor function.
+
+     It will return : ( is_premissible, violated_rules)
+
+    """
+    violated_rules: List[str] = []
+
+    if is_rule1_violated(action):
+        violated_rules.append("Rule 1: Non-Maleficence (Severe Harm)")
+    if is_rule2_violated(action):
+        violated_rules.append("Rule 2: Harm-Mitigation (Unjustified Minor Harm)")
+    if is_rule3_violated(action):
+        violated_rules.append("Rule 3: Data-Stewardship (Privacy without Consent)")
+    if is_rule4_violated(action):
+        violated_rules.append("Rule 4: Honesty (Unjustified Deception)")
+    if is_rule5_violated(action):
+        violated_rules.append("Rule 5: Accountability (No Explanation / Traceability)")
+    if is_rule6_violated(action):
+        violated_rules.append("Rule 6: Bias Governance (Unmitigated Historical Bias)")
+    
+
+    is_permissible = (len(violated_rules) == 0)
+    return is_permissible, violated_rules
