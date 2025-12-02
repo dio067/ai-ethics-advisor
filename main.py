@@ -195,22 +195,24 @@ Domain: Predictive Policing AI
 # 1- Scenario A (Obviousley Premissible):
 
 scenario_A_description = """
-Scenario A: Location-based Patrol Optimization with Oversight
+Scenario A: Safer Patrol Zones with Limited Data
 
-A city deploys a predictive policing AI that only suggests patrol zones (not specific people)
-based on recent anonymous incident reports and environmental factors (lighting, time of day).
-Police presence increases slightly in some areas, which may cause minor inconvenience,
-but the main goal is to prevent serious violent incidents.
+In this scenario, the city uses a predictive policing AI only to suggest patrol zones,
+not to target specific people. The AI looks at recent anonymous incident reports and
+simple factors like time of day and lighting. Police presence increases a bit in some
+areas, which might annoy some residents, but the main goal is to prevent serious violence.
 
-The system:
-- does NOT directly cause severe harm,
-- may cause minor harm (increased presence) but is justified to prevent catastrophe,
-- does NOT use invasive personal data (no privacy violation),
-- is NOT deceptive (citizens are informed about the system),
-- has ethics approval and clear documentation,
-- does NOT rely on biased historical arrest data,
-- and still has bias monitoring in place as a safeguard.
+Key points:
+- No one is directly arrested or punished just because of the AI.
+- Any minor harm (extra police presence) is meant to prevent bigger dangers.
+- The system does not use detailed personal data, so there is no clear privacy violation.
+- The public knows that the system exists and what it roughly does.
+- There is ethics approval and documentation.
+- It does not rely on biased historical arrest data, and there is bias monitoring.
+
+Because of this, I expect the action to be ethically PERMISSIBLE in this framework.
 """
+
 
 scenario_A_action = {
     "causes_severe_harm": False,
