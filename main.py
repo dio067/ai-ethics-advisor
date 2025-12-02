@@ -63,6 +63,8 @@ Overall permissibility:
 from typing import Dict, List, Tuple
 
 
+
+
 def is_rule1_violated(action: Dict[str, bool]) -> bool:
     """
     Rule 1 - Non-Maleficence:
@@ -76,3 +78,10 @@ def is_rule2_violated(action: Dict[str, bool]) -> bool:
     V2 := causes_minor_harm ∧ ¬prevents_catastrophe
     """
     return action["causes_minor_harm"] and not action["prevents_catastrophe"]
+
+def is_rule3_violated(action: Dict[str, bool]) -> bool:
+    """
+    Rule 3 - Data-Stewardship:
+    V3 := violates_privacy ∧ ¬has_consent
+    """
+    return action["violates_privacy"] and not action["has_consent"]
