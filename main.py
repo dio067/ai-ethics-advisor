@@ -400,59 +400,64 @@ Reflection & Discussion
 
 1) Which ethical principle was hardest to formalize?
 
-   The hardest principle to formalize was Rule 4 (Honesty). In reality, deception is not
-   simply "allowed" or "forbidden". It depends on intent, context, frequency, power
-   dynamics, and long-term trust. In the formal model, I compressed all of that into a
-   single condition:
+   For me, the hardest principle to formalize was Rule 4 (Honesty). In real life, lying or
+   hiding information is not simply "allowed" or "forbidden". It depends on many things:
+   the intention, how often it happens, who has power, and how it affects trust in the long
+   term. In my model, I had to shrink all of that into one condition:
 
        V4 := DH ∧ ¬(PM ∧ EA)
 
-   This assumes deception is acceptable whenever it prevents minor harm AND has ethics
-   approval, which is a much stronger and more simplified statement than real ethical
-   reasoning.
+   This means deception is considered acceptable whenever it prevents minor harm AND has
+   ethics approval. I know this is a simplification and does not capture all the nuance
+   of honesty and trust in real situations.
 
 2) A real-world scenario that might break this framework:
 
-   A predictive policing system might technically satisfy all the rules:
-     - No obvious severe harm at deployment time,
-     - Some form of "consent" via legal or political channels,
-     - Documented bias mitigation and explainability,
-   but in practice it still creates fear, over-policing, and long-term mistrust in
-   certain neighborhoods. The current rules focus on direct, short-term harms and clear
-   violations, but do not capture long-term social effects, historical oppression, or
-   subtle coercion. So the advisor might label the system as "permissible" even when
-   many people would consider it unethical.
+   One possible failure case would be a predictive policing system that formally satisfies
+   all my rules: it avoids obvious severe harm, has some kind of legal or political
+   "consent", includes documented bias mitigation, and is explainable on paper. However,
+   in practice it could still create fear, over-policing, and long-term damage to trust
+   in certain neighborhoods.
+
+   My logical framework focuses on clear, short-term violations like "severe harm" or
+   "no consent", but it does not fully capture long-term social effects, historical
+   injustice, or subtle pressure on communities. In such a case, the advisor might say
+   the system is PERMISSIBLE, even though many people would see it as unfair or harmful.
 
 3) Role of human oversight in real deployment:
 
-   This AI Ethics Advisor should be treated as a structured checklist, not a final judge.
-   Human oversight committees (including legal experts, ethicists, technical experts, and
-   community representatives) should:
-     - review the advisor's output,
-     - question the truth of each boolean input (e.g., "do we REALLY have consent?"),
-     - and request more evidence when the stakes are high.
+   If this AI Ethics Advisor were used in the real world, I think it should be treated as
+   a structured checklist, not as the final decision-maker. Human oversight is still
+   essential. A mixed group (legal experts, ethicists, technical people, and community
+   representatives) should:
 
-   In highly sensitive cases, a negative result should trigger mandatory human review,
-   and even a "PERMISSIBLE" result should not be accepted blindly without discussion.
+     - review the advisor's output,
+     - question whether each True/False input is actually accurate,
+     - ask for more evidence in high-stakes situations.
+
+   When the advisor says an action is IMPERMISSIBLE, that should trigger a serious human
+   review. Even when the advisor says PERMISSIBLE, humans should still discuss whether
+   something important might be missing from the rules or the inputs.
 
 4) Trade-offs between a simple framework and a more complex one:
 
-   A simple, rigid framework (like this one) has clear benefits:
-     - easy to explain and audit,
-     - straightforward to implement in code,
-     - useful as a first-line filter for obviously unacceptable actions.
+   A simple, rigid framework like the one I built has clear advantages:
+     - it is easy to understand and explain,
+     - it is straightforward to implement in code,
+     - it works well as a first filter to catch obviously unacceptable actions
+       (for example, severe harm with no justification, or biased historical data
+        without any mitigation).
 
-   But it has drawbacks:
-     - it can miss nuance,
-     - it cannot fully represent social context, history, or power,
-     - and it may give a false sense of security ("the logic says it's fine").
+   The downside is that it lacks nuance. It cannot fully represent context, culture,
+   power, or long-term effects. This can create a false sense of safety: "the logic
+   says it's fine, so everything must be okay."
 
-   A more complex, nuanced framework might combine formal logic with probabilistic
-   reasoning, case-based analysis, and richer ethical theories. That could better match
-   real-world complexity, but it would be harder to understand, verify, and maintain.
+   A more complex, nuanced framework could combine logic with statistics, real case
+   studies, and deeper ethical theory. That might handle real-world situations better,
+   but it would also be harder for people to understand, verify, and trust.
 
-   In practice, a hybrid approach is most realistic: use a relatively simple logical core
-   like this to enforce hard constraints (no severe harm, no privacy violations without
-   consent, no unmitigated historical bias), and then layer human judgment and more
-   nuanced analysis on top, instead of expecting the logic alone to fully solve ethics.
+   In my view, a hybrid approach is best: use a relatively simple logical core like this
+   to enforce hard constraints (no severe harm, no privacy violations without consent,
+   no unmitigated historical bias), and then add human judgment and richer analysis on
+   top of it, instead of expecting formal logic alone to solve ethics.
 """
