@@ -1,0 +1,35 @@
+--- Evaluating Scenario A: Location-based Patrol Optimization ---
+Narrative: Scenario A: Safer Patrol Zones with Limited Data
+
+Predicted Outcome: PERMISSIBLE.
+Expected Violations: []
+
+Actual Output:
+Action is PERMISSIBLE.
+Violated Rules: []
+
+----------------------------------------------------------------------
+
+--- Evaluating Scenario B: Hidden Risk Scores Based on Biased History ---
+Narrative: Scenario B: Hidden Risk Scores Based on Biased History
+
+Predicted Outcome: IMPERMISSIBLE.
+Expected Violations: ['Rule 1: Non-Maleficence (Severe Harm)', 'Rule 2: Harm-Mitigation (Unjustified Minor Harm)', 'Rule 3: Data-Stewardship (Privacy without Consent)', 'Rule 4: Honesty (Unjustified Deception)', 'Rule 5: Accountability (No Explanation / Traceability)', 'Rule 6: Bias Governance (Unmitigated Historical Bias)']
+
+Actual Output:
+Action is IMPERMISSIBLE.
+Violated Rules: ['Rule 1: Non-Maleficence (Severe Harm)', 'Rule 2: Harm-Mitigation (Unjustified Minor Harm)', 'Rule 3: Data-Stewardship (Privacy without Consent)', 'Rule 4: Honesty (Unjustified Deception)', 'Rule 5: Accountability (No Explanation / Traceability)', 'Rule 6: Bias Governance (Unmitigated Historical Bias)']
+
+----------------------------------------------------------------------
+
+--- Evaluating Scenario C: Targeted Undercover Intervention ---
+Narrative: Scenario C: Undercover Intervention to Prevent a Shooting
+
+Predicted Outcome: PERMISSIBLE.
+Expected Violations: []
+
+Actual Output:
+Action is PERMISSIBLE.
+Violated Rules: []
+
+----------------------------------------------------------------------
