@@ -21,7 +21,7 @@ Propositional Variables:
     (specific)
 
     1- HD: uses_historical_data
-    2- BM: vhas_bias_mitigation
+    2- BM: has_bias_mitigation
 
 -------------------------------
 
@@ -57,7 +57,7 @@ Overall permissibility:
     P ≡ ¬V1 ∧ ¬V2 ∧ ¬V3 ∧ ¬V4 ∧ ¬V5 ∧ ¬V6
 
 
-""""
+"""
 
 
 from typing import Dict, List, Tuple
@@ -136,3 +136,100 @@ def is_action_permissible(action: Dict[str, bool]) -> Tuple[bool, List[str]]:
 
     is_permissible = (len(violated_rules) == 0)
     return is_permissible, violated_rules
+
+
+
+"""
+Domain: Predictive Policing AI
+
+1- Severe harm (causes_severe_harm):
+    Wrongful arrest, physical violence, or life-changing negative consequences
+    caused mainly by the AI decision (e.g., being jailed because of a risk score).
+
+2- Minor harm (causes_minor_harm):
+    Psychological stress, repeated police stops, short-term detainment, or
+    uncomfortable questioning without direct physical violence.
+
+3- Prevents catastrophe (prevents_catastrophe):
+    Preventing a huge accident or event such as a mass shooting, gang retaliation,
+    terrorist attack, or major loss of life.
+
+4- Violates privacy (violates_privacy):
+    Using detailed personal data (location history, online activity, communication
+    metadata) beyond what people reasonably expected or agreed to.
+
+5- Has consent (has_consent):
+    There is explicit informed consent from individuals OR a clear democratic/legal
+    mandate with transparency and the possibility to contest or opt out.
+
+6- Deceives human (deceives_human):
+    Citizens or officers are intentionally misled about what the system is doing
+    (for example, saying “random patrols” while it is actually targeted AI prediction).
+
+7- Has ethics approval (has_ethics_approval):
+    An independent ethics board / legal committee reviewed the system and approved it
+    under specific constraints.
+
+8- Has explanation (has_explanation):
+    The decisions of the AI can be explained, audited, and traced back to
+    responsible humans and documented procedures.
+
+9- Prevents minor harm (prevents_minor_harm):
+    The action or deception is used to prevent “smaller-scale” harms such as
+    harassment, property damage, or neighborhood-level violence.
+
+10- uses_historical_data (uses_historical_data):
+    The AI is trained mainly on historical crime / arrest data which might contain
+    structural bias against certain neighborhoods or groups.
+
+11- has_bias_mitigation (has_bias_mitigation):
+    There are explicit fairness / bias mitigation techniques and regular audits
+    to reduce the impact of biased historical data.
+"""
+
+
+
+# =======================
+# Scenarios
+# =======================
+
+
+
+# 1- Scenario A (Obviousley Premissible):
+
+    scenario_A_description = """
+    Scenario A: Location-based Patrol Optimization with Oversight
+
+    A city deploys a predictive policing AI that only suggests patrol zones (not specific people)
+    based on recent anonymous incident reports and environmental factors (lighting, time of day).
+    Police presence increases slightly in some areas, which may cause minor inconvenience,
+    but the main goal is to prevent serious violent incidents.
+
+    The system:
+    - does NOT directly cause severe harm,
+    - may cause minor harm (increased presence) but is justified to prevent catastrophe,
+    - does NOT use invasive personal data (no privacy violation),
+    - is NOT deceptive (citizens are informed about the system),
+    - has ethics approval and clear documentation,
+    - does NOT rely on biased historical arrest data,
+    - and still has bias monitoring in place as a safeguard.
+    """
+    
+    scenario_A_action = {
+        "causes_severe_harm": False,
+        "causes_minor_harm": True,         
+        "prevents_catastrophe": True,      
+        "violates_privacy": False,          
+        "has_consent": True,                
+        "deceives_human": False,          
+        "has_ethics_approval": True,
+        "has_explanation": True,
+        "prevents_minor_harm": True,
+        "uses_historical_data": False,     
+        "has_bias_mitigation": True,        
+}
+
+    scenario_A_predicted_outcome = {
+    "expected_permissible": True,
+    "expected_violations": [],
+}
