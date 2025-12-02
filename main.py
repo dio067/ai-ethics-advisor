@@ -284,5 +284,46 @@ Domain: Predictive Policing AI
 
 
 # 3- Scenario C (Edge Case / Ambiguous):
-
     
+    scenario_C_description = """
+    Scenario C: Targeted Undercover Intervention with Strong Safeguards
+
+    An AI system predicts a high risk of gang retaliation at specific locations and times.
+    It uses a combination of current intelligence and carefully debiased historical data.
+    The system recommends deploying undercover officers who appear as ordinary civilians
+    to quietly de-escalate conflicts and interrupt potential violence.
+
+    The system:
+    - does NOT directly cause severe harm (officers are trained to avoid escalation),
+    - may cause minor harm (some people may feel watched or briefly questioned),
+    - is aimed at preventing a likely shooting (a serious catastrophe),
+    - uses limited personal data with judicial oversight and community-level consent,
+    - involves deception (undercover work), but:
+        * the deception is narrowly scoped,
+        * it has ethics and legal approval,
+        * and it is intended to prevent minor and potentially severe harms,
+    - keeps full internal explanations and logs for later audit,
+    - uses historical data but only with strong bias mitigation and fairness audits.
+
+    This scenario is ethically ambiguous in real life, but under the current formal rules,
+    it is classified as permissible because every rule's logical condition is satisfied.
+    """
+
+    scenario_C_action = {
+        "causes_severe_harm": False,
+        "causes_minor_harm": True,          
+        "prevents_catastrophe": True,       
+        "violates_privacy": True,           
+        "has_consent": True,                
+        "deceives_human": True,             
+        "has_ethics_approval": True,        
+        "has_explanation": True,            
+        "prevents_minor_harm": True,        
+        "uses_historical_data": True,       
+        "has_bias_mitigation": True,        
+    }
+
+    scenario_C_predicted_outcome = {
+        "expected_permissible": True,
+        "expected_violations": [],  
+    }
