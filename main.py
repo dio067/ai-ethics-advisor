@@ -101,3 +101,10 @@ def is_rule5_violated(action: Dict[str, bool]) -> bool:
     V5 := ¬has_explanation
     """
     return not action["has_explanation"]
+
+def is_rule6_violated(action: Dict[str, bool]) -> bool:
+    """
+    Rule 6 - Bias Governance (Predictive Policing):
+    V6 := uses_historical_data ∧ ¬has_bias_mitigation
+    """
+    return action["uses_historical_data"] and not action["has_bias_mitigation"]
